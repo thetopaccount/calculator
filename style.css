@@ -1,0 +1,55 @@
+body * {
+	border: 1px solid gray;
+}
+
+body {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 2rem 0;
+	height: 100vh;
+	min-height: 20rem;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-justify-center,
+.flex-center {
+	justify-content: center;
+}
+
+.flex-align-center,
+.flex-center {
+	align-items: center;
+}
+
+.flex-column {
+	flex-flow: column;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+#calc-body {
+	box-sizing: border-box;
+	height: 100%;
+	width: 45vw;
+	min-width: 20rem;
+}
+
+#calc-screen {
+	min-height: 20%;
+	max-height: 25%;
+	margin: 5%;
+}
+
+#calc-buttons {
+	margin: 0 5% 5%;
+}
+
+#calc-body > *,
+#calc-buttons > * {
+	flex: 1;
+}
