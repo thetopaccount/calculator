@@ -35,8 +35,10 @@ body {
 #calc-body {
 	box-sizing: border-box;
 	height: 100%;
+	max-height: 60vw;
 	width: 45vw;
 	min-width: 20rem;
+	max-width: 90vh;
 }
 
 #calc-screen {
