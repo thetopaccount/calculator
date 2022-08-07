@@ -29,8 +29,8 @@ const divide = (a, b) => {
 function checkIfValidNumbers(...chars) {
 	for (let char of chars) {
 		if (!['number', 'string'].includes(typeof char) || 
-			(char === '') || 
-			!(+char)) {
+			((char != 0) && !+char) || 
+			(char === '')) {
 				return false;
 		}
 	}
