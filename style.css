@@ -39,16 +39,21 @@ body {
 	width: 45vw;
 	min-width: 20rem;
 	max-width: 90vh;
+	padding: 3vw;
+	gap: 3vw;
 }
 
 #calc-screen {
 	min-height: 20%;
 	max-height: 25%;
-	margin: 5%;
 }
 
 #calc-buttons {
-	margin: 0 5% 5%;
+	gap: 3vw;
+}
+
+#calc-buttons button {
+	padding: 5%;
 }
 
 #calc-body > *,
@@ -61,11 +66,9 @@ body {
 }
 
 #calc-digits button {
-	padding: 5%;
 	min-width: 30%;
 }
 
 #calc-operators button {
-	padding: 5%;
 	min-width: 40%;
 }
