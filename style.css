@@ -52,12 +52,20 @@ body {
 }
 
 #calc-body > *,
-#calc-buttons > *,
-#calc-digits > * {
+#calc-buttons * {
 	flex: 1;
 }
 
-#calc-digits > * {
+#calc-digits {
+	min-width: 60%;
+}
+
+#calc-digits button {
 	padding: 5%;
 	min-width: 30%;
+}
+
+#calc-operators button {
+	padding: 5%;
+	min-width: 40%;
 }
