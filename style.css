@@ -46,6 +46,8 @@ body {
 #calc-screen {
 	min-height: 20%;
 	max-height: 25%;
+	resize: none;
+	text-align: right;
 }
 
 #calc-buttons {
