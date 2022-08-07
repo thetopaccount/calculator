@@ -52,6 +52,12 @@ body {
 }
 
 #calc-body > *,
-#calc-buttons > * {
+#calc-buttons > *,
+#calc-digits > * {
 	flex: 1;
+}
+
+#calc-digits > * {
+	padding: 5%;
+	min-width: 30%;
 }
