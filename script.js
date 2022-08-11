@@ -16,7 +16,7 @@ function checkIfValidNumbers(...chars) {
 
 const operate = (operator, a, b) => {
 	try {
-		if (!checkIfValidNumbers(a, b) || !(/[\+\-\*\/]/).test(operator)) {
+		if (!checkIfValidNumbers(a, b)) {
 			throw new Error('Invalid operation');
 		}
 		switch (operator) {
