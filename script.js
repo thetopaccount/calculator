@@ -33,29 +33,18 @@ const operate = (operator, a, b) => {
 
 const calculateResult = () => {
 	try {
-		// throw new Error('Error while calculating result');
-		return 'Logic WIP';
+		while(operatorStack.length) {
+			numberStack.unshift(
+				operate(operatorStack.shift(), numberStack.shift(), numberStack.shift())
+			);
+		}
+		return numberStack.pop();
 	} catch (e) {
-		console.error(`${e.name}: ${e.message}`);
+		console.error('Error while calculating result');
 	}
 }
 
-let numberStack = [];
-let operatorStack = [];
-let currentNum = '';
-
-const calcDigits = document.getElementById('calc-digits');
-const calcScreen = document.getElementById('calc-screen');
-const calcOperators = document.getElementById('calc-operators');
-
-calcDigits.addEventListener('click', (e) => {
-	calcScreen.value += e.target.textContent;
-	currentNum += e.target.textContent;
-});
-
-calcOperators.addEventListener('click', (e) => {
-	handleEnteredOperator(e.target.textContent);
-});
+const hasSuccessiveOperators = (string) => (/[\+\-\*\/]{2}/).test(string);
 
 const handleEnteredOperator = (enteredOperator) => {
 	switch (enteredOperator) {
@@ -78,7 +67,9 @@ const handleEnteredOperator = (enteredOperator) => {
 			break;
 		case 'C':
 			calcScreen.value = '';
-			resetCalcOperations();
+			currentNum = '';
+			numberStack = [];
+			operatorStack = [];
 			break;
 		case '⌫':
 			if ((/[\+\-\*\/]/).test(calcScreen.value?.slice?.(-1))) {
@@ -96,22 +87,32 @@ const handleEnteredOperator = (enteredOperator) => {
 			if ((/[\+\-\*\/]/).test(calcScreen.value?.slice?.(-1))) {
 				operatorStack.pop();
 			}
-			calcScreen.value = calculateResult();
-			resetCalcOperations();
-			currentNum = calcScreen.value;
+			if (numberStack.length && operatorStack.length) {
+				calcScreen.value = calculateResult();
+				currentNum = calcScreen.value;
+			}
 			break;
 		default	:
 			break;
 	}
 }
 
-const resetCalcOperations = () => {
-	currentNum = '';
-	numberStack = [];
-	operatorStack = [];
-}
+let numberStack = [];
+let operatorStack = [];
+let currentNum = '';
 
-const hasSuccessiveOperators = (string) => (/[\+\-\*\/]{2}/).test(string);
+const calcDigits = document.getElementById('calc-digits');
+const calcScreen = document.getElementById('calc-screen');
+const calcOperators = document.getElementById('calc-operators');
+
+calcDigits.addEventListener('click', (e) => {
+	calcScreen.value += e.target.textContent;
+	currentNum += e.target.textContent;
+});
+
+calcOperators.addEventListener('click', (e) => {
+	handleEnteredOperator(e.target.textContent);
+});
 
 window.onload = () => {
 	calcScreen.value = '';
