@@ -93,8 +93,12 @@ const handleEnteredOperator = (enteredOperator) => {
 			if (currentNum) {
 				numberStack.push(currentNum);
 			}
+			if ((/[\+\-\*\/]/).test(calcScreen.value?.slice?.(-1))) {
+				operatorStack.pop();
+			}
 			calcScreen.value = calculateResult();
 			resetCalcOperations();
+			currentNum = calcScreen.value;
 			break;
 		default	:
 			break;
