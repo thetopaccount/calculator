@@ -81,7 +81,7 @@ const handleEnteredOperator = (enteredOperator) => {
 			calcScreen.value = calcScreen.value?.slice?.(0, -1);
 			break;
 		case '=':
-			if (currentNum) {
+			if (currentNum && operatorStack.length) {
 				numberStack.push(currentNum);
 			}
 			if ((/[\+\-\*\/]/).test(calcScreen.value?.slice?.(-1))) {
