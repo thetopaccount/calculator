@@ -65,12 +65,14 @@ const handleEnteredOperator = (enteredOperator) => {
 			operatorStack.push(enteredOperator);
 			currentNum = '';
 			break;
+		case 'c':
 		case 'C':
 			calcScreen.value = '';
 			currentNum = '';
 			numberStack = [];
 			operatorStack = [];
 			break;
+		case 'Backspace':
 		case '⌫':
 			if ((/[\+\-\*\/]/).test(calcScreen.value?.slice?.(-1))) {
 				operatorStack.pop();
@@ -97,6 +99,15 @@ const handleEnteredOperator = (enteredOperator) => {
 	}
 }
 
+const handleKeypress = (pressedKey) => {
+	if ((/[\+\-\*\/\=]|c|C|Backspace/).test(pressedKey)) {
+		handleEnteredOperator(pressedKey);
+	} else if ((/[0-9]/).test(pressedKey)) {
+		calcScreen.value += pressedKey;
+		currentNum += pressedKey;
+	}
+}
+
 let numberStack = [];
 let operatorStack = [];
 let currentNum = '';
@@ -112,6 +123,10 @@ calcDigits.addEventListener('click', (e) => {
 
 calcOperators.addEventListener('click', (e) => {
 	handleEnteredOperator(e.target.textContent);
+});
+
+window.addEventListener('keydown', (e) => {
+	handleKeypress(e.key);
 });
 
 window.onload = () => {
