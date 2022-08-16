@@ -24,6 +24,10 @@ body {
 	align-items: center;
 }
 
+.flex-justify-right {
+	justify-content: right;
+}
+
 .flex-column {
 	flex-flow: column;
 }
@@ -44,10 +48,24 @@ body {
 }
 
 #calc-screen {
-	min-height: 20%;
-	max-height: 25%;
-	resize: none;
-	text-align: right;
+	min-height: 25%;
+	max-height: 30%;
+}
+
+#calc-screen > * {
+	font-family: monospace;
+	padding: 0 1rem;
+}
+
+#calc-screen :nth-child(1) {
+	height: 40%;
+	font-size: large;
+}
+
+#calc-screen :nth-child(2) {
+	height: 60%;
+	font-size: xx-large;
+	font-weight: bold;
 }
 
 #calc-buttons {

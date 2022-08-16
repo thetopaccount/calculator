@@ -53,45 +53,49 @@ const handleEnteredOperator = (enteredOperator) => {
 		case '*':
 		case '/':
 			// expression cannot start with operators
-			if (calcScreen.value?.length === 0 && !calcScreen.value) break;
+			if (currentExpr.textContent?.length === 0 && !currentExpr.textContent) break;
 			// prevent entry of successive operators
-			if (hasSuccessiveOperators(calcScreen.value?.slice?.(-1) + enteredOperator)) {
-				calcScreen.value = calcScreen.value?.slice?.(0, -1);
+			if (hasSuccessiveOperators(currentExpr.textContent?.slice?.(-1) + enteredOperator)) {
+				currentExpr.textContent = currentExpr.textContent?.slice?.(0, -1);
 				operatorStack.pop();
 			} else {
 				numberStack.push(currentNum);
 			}
-			calcScreen.value += enteredOperator;
+			formerExpr.textContent = '';
+			currentExpr.textContent += enteredOperator;
 			operatorStack.push(enteredOperator);
 			currentNum = '';
 			break;
 		case 'c':
 		case 'C':
-			calcScreen.value = '';
+			currentExpr.textContent = '';
+			formerExpr.textContent = '';
 			currentNum = '';
 			numberStack = [];
 			operatorStack = [];
 			break;
 		case 'Backspace':
 		case '⌫':
-			if ((/[\+\-\*\/]/).test(calcScreen.value?.slice?.(-1))) {
+			if ((/[\+\-\*\/]/).test(currentExpr.textContent?.slice?.(-1))) {
 				operatorStack.pop();
 				currentNum = numberStack.pop();
 			} else {
 				currentNum = currentNum?.slice?.(0, -1);
 			}
-			calcScreen.value = calcScreen.value?.slice?.(0, -1);
+			formerExpr.textContent = '';
+			currentExpr.textContent = currentExpr.textContent?.slice?.(0, -1);
 			break;
 		case '=':
 			if (currentNum && operatorStack.length) {
 				numberStack.push(currentNum);
 			}
-			if ((/[\+\-\*\/]/).test(calcScreen.value?.slice?.(-1))) {
+			if ((/[\+\-\*\/]/).test(currentExpr.textContent?.slice?.(-1))) {
 				operatorStack.pop();
 			}
 			if (numberStack.length && operatorStack.length) {
-				calcScreen.value = calculateResult();
-				currentNum = calcScreen.value;
+				formerExpr.textContent = currentExpr.textContent;
+				currentExpr.textContent = calculateResult();
+				currentNum = currentExpr.textContent;
 			}
 			break;
 		default	:
@@ -103,7 +107,8 @@ const handleKeypress = (pressedKey) => {
 	if ((/[\+\-\*\/\=]|c|C|Backspace/).test(pressedKey)) {
 		handleEnteredOperator(pressedKey);
 	} else if ((/[0-9]/).test(pressedKey)) {
-		calcScreen.value += pressedKey;
+		formerExpr.textContent = '';
+		currentExpr.textContent += pressedKey;
 		currentNum += pressedKey;
 	}
 }
@@ -113,11 +118,12 @@ let operatorStack = [];
 let currentNum = '';
 
 const calcDigits = document.getElementById('calc-digits');
-const calcScreen = document.getElementById('calc-screen');
 const calcOperators = document.getElementById('calc-operators');
+const formerExpr = document.getElementById('former-expr');
+const currentExpr = document.getElementById('current-expr');
 
 calcDigits.addEventListener('click', (e) => {
-	calcScreen.value += e.target.textContent;
+	currentExpr.textContent += e.target.textContent;
 	currentNum += e.target.textContent;
 });
 
@@ -130,5 +136,6 @@ window.addEventListener('keydown', (e) => {
 });
 
 window.onload = () => {
-	calcScreen.value = '';
+	currentExpr.textContent = '';
+	formerExpr.textContent = '';
 }
