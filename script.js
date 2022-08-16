@@ -33,12 +33,12 @@ const operate = (operator, a, b) => {
 
 const calculateResult = () => {
 	try {
-		while(operatorStack.length) {
-			numberStack.unshift(
-				operate(operatorStack.shift(), numberStack.shift(), numberStack.shift())
+		while(operatorQueue.length) {
+			numberQueue.unshift(
+				operate(operatorQueue.shift(), numberQueue.shift(), numberQueue.shift())
 			);
 		}
-		return numberStack.pop();
+		return numberQueue.pop();
 	} catch (e) {
 		console.error('Error while calculating result');
 	}
@@ -57,13 +57,13 @@ const handleEnteredOperator = (enteredOperator) => {
 			// prevent entry of successive operators
 			if (hasSuccessiveOperators(currentExpr.textContent?.slice?.(-1) + enteredOperator)) {
 				currentExpr.textContent = currentExpr.textContent?.slice?.(0, -1);
-				operatorStack.pop();
+				operatorQueue.pop();
 			} else {
-				numberStack.push(currentNum);
+				numberQueue.push(currentNum);
 			}
 			formerExpr.textContent = '';
 			currentExpr.textContent += enteredOperator;
-			operatorStack.push(enteredOperator);
+			operatorQueue.push(enteredOperator);
 			currentNum = '';
 			break;
 		case 'c':
@@ -71,14 +71,14 @@ const handleEnteredOperator = (enteredOperator) => {
 			currentExpr.textContent = '';
 			formerExpr.textContent = '';
 			currentNum = '';
-			numberStack = [];
-			operatorStack = [];
+			numberQueue = [];
+			operatorQueue = [];
 			break;
 		case 'Backspace':
 		case '⌫':
 			if ((/[\+\-\*\/]/).test(currentExpr.textContent?.slice?.(-1))) {
-				operatorStack.pop();
-				currentNum = numberStack.pop();
+				operatorQueue.pop();
+				currentNum = numberQueue.pop();
 			} else {
 				currentNum = currentNum?.slice?.(0, -1);
 			}
@@ -86,13 +86,13 @@ const handleEnteredOperator = (enteredOperator) => {
 			currentExpr.textContent = currentExpr.textContent?.slice?.(0, -1);
 			break;
 		case '=':
-			if (currentNum && operatorStack.length) {
-				numberStack.push(currentNum);
+			if (currentNum && operatorQueue.length) {
+				numberQueue.push(currentNum);
 			}
 			if ((/[\+\-\*\/]/).test(currentExpr.textContent?.slice?.(-1))) {
-				operatorStack.pop();
+				operatorQueue.pop();
 			}
-			if (numberStack.length && operatorStack.length) {
+			if (numberQueue.length && operatorQueue.length) {
 				formerExpr.textContent = currentExpr.textContent;
 				currentExpr.textContent = calculateResult();
 				currentNum = currentExpr.textContent;
@@ -113,8 +113,8 @@ const handleKeypress = (pressedKey) => {
 	}
 }
 
-let numberStack = [];
-let operatorStack = [];
+let numberQueue = [];
+let operatorQueue = [];
 let currentNum = '';
 
 const calcDigits = document.getElementById('calc-digits');
