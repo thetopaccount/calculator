@@ -7,7 +7,7 @@ body {
 	margin: 0;
 	padding: 2rem 0;
 	height: 100vh;
-	min-height: 20rem;
+	min-height: 25rem;
 }
 
 .flex {
@@ -39,8 +39,9 @@ body {
 #calc-body {
 	box-sizing: border-box;
 	height: 100%;
-	max-height: 60vw;
-	width: 45vw;
+	min-height: 20rem;
+	max-height: 75vw;
+	width: 50vw;
 	min-width: 20rem;
 	max-width: 90vh;
 	padding: 3vw;
