@@ -90,10 +90,14 @@ const handleEnteredOperator = (enteredOperator) => {
 				numberQueue.push(currentNum);
 			}
 			if ((/[\+\-\*\/]/).test(currentExpr.textContent?.slice?.(-1))) {
+				if (numberQueue.length === 1) {
+					currentNum = numberQueue.pop();
+				}
 				operatorQueue.pop();
+				currentExpr.textContent = currentExpr.textContent?.slice?.(0, -1);
 			}
 			if (numberQueue.length && operatorQueue.length) {
-				formerExpr.textContent = currentExpr.textContent;
+				formerExpr.textContent = currentExpr.textContent + ' =';
 				currentExpr.textContent = calculateResult();
 				currentNum = currentExpr.textContent;
 			}
