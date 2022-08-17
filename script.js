@@ -110,6 +110,18 @@ const handleKeypress = (pressedKey) => {
 		formerExpr.textContent = '';
 		currentExpr.textContent += pressedKey;
 		currentNum += pressedKey;
+	} else if (pressedKey === '.') {
+		handleDecimalPoint();
+	}
+}
+
+const handleDecimalPoint = () => {
+	if (!currentNum) {
+		currentNum = '0.';
+		currentExpr.textContent += currentNum;
+	} else if (!currentNum.includes('.')) {
+		currentNum += '.';
+		currentExpr.textContent += '.';
 	}
 }
 
@@ -123,8 +135,12 @@ const formerExpr = document.getElementById('former-expr');
 const currentExpr = document.getElementById('current-expr');
 
 calcDigits.addEventListener('click', (e) => {
-	currentExpr.textContent += e.target.textContent;
-	currentNum += e.target.textContent;
+	if (e.target.textContent === '.') {
+		handleDecimalPoint();
+	} else {
+		currentExpr.textContent += e.target.textContent;
+		currentNum += e.target.textContent;
+	}
 });
 
 calcOperators.addEventListener('click', (e) => {
