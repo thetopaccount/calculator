@@ -32,6 +32,10 @@ body {
 	flex-flow: column;
 }
 
+.flex-row-reverse {
+	flex-flow: row-reverse;
+}
+
 .flex-wrap {
 	flex-wrap: wrap;
 }
@@ -56,6 +60,7 @@ body {
 #calc-screen > * {
 	font-family: monospace;
 	padding: 0 1rem;
+	overflow-x: auto;
 }
 
 #calc-screen :nth-child(1) {
