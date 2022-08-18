@@ -7,7 +7,8 @@ body {
 	margin: 0;
 	padding: 2rem 0;
 	height: 100vh;
-	min-height: 25rem;
+	min-height: 35rem;
+	min-width: 25rem;
 }
 
 .flex {
@@ -42,19 +43,14 @@ body {
 
 #calc-body {
 	box-sizing: border-box;
-	height: 100%;
-	min-height: 20rem;
-	max-height: 75vw;
-	width: 50vw;
-	min-width: 20rem;
-	max-width: 90vh;
-	padding: 3vw;
-	gap: 3vw;
+	height: 30rem;
+	width: 25rem;
+	padding: 1rem;
+	gap: 1rem;
 }
 
 #calc-screen {
-	min-height: 25%;
-	max-height: 30%;
+	max-height: 10rem;
 }
 
 #calc-screen > * {
@@ -75,7 +71,7 @@ body {
 }
 
 #calc-buttons {
-	gap: 3vw;
+	gap: 1rem;
 }
 
 #calc-buttons button {
