@@ -58,13 +58,13 @@ const handleEnteredOperator = (enteredOperator) => {
 			if (hasSuccessiveOperators(currentExpr.textContent?.slice?.(-1) + enteredOperator)) {
 				currentExpr.textContent = currentExpr.textContent?.slice?.(0, -1);
 				operatorQueue.pop();
-			} else {
+			} else if (!currentNum.endsWith('.')) {
+				formerExpr.textContent = '';
+				currentExpr.textContent += enteredOperator;
 				numberQueue.push(currentNum);
+				operatorQueue.push(enteredOperator);
+				currentNum = '';
 			}
-			formerExpr.textContent = '';
-			currentExpr.textContent += enteredOperator;
-			operatorQueue.push(enteredOperator);
-			currentNum = '';
 			break;
 		case 'c':
 		case 'C':
