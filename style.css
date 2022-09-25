@@ -1,8 +1,9 @@
-body * {
-	border: 1px solid gray;
+* {
+	font-family: manrope-regular;
 }
 
 body {
+	background-color: black;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 2rem;
@@ -42,6 +43,9 @@ body {
 }
 
 #calc-body {
+	box-shadow: 0 0 0 .25rem #cbdddf;
+	background-image: linear-gradient(to bottom right, #252e2f, #171f20);
+	border-radius: 0.5rem;
 	box-sizing: border-box;
 	height: 30rem;
 	width: 25rem;
@@ -51,12 +55,13 @@ body {
 
 #calc-screen {
 	max-height: 10rem;
+	margin: 0.25rem;
 }
 
 #calc-screen > * {
-	font-family: monospace;
 	padding: 0 1rem;
 	overflow-x: auto;
+	font-family: manrope-bold;
 }
 
 #calc-screen :nth-child(1) {
@@ -70,14 +75,12 @@ body {
 	font-weight: bold;
 }
 
-#calc-buttons {
-	gap: 1rem;
-}
-
 #calc-buttons button {
-	padding: 5%;
-	font-size: 1rem;
+	font-size: 1.25rem;
 	font-weight: 500;
+	margin: 0.25rem;
+	border: 0;
+	border-radius: 0.25rem;
 }
 
 #calc-body > *,
@@ -90,9 +93,39 @@ body {
 }
 
 #calc-digits button {
-	min-width: 30%;
+	min-width: 25%;
+	color: #e3f6f9;
+	background-image: linear-gradient(to bottom right, #646e6f, #354142);
+	transition: 0.1s ease;
+}
+
+#calc-buttons button:hover {
+	font-family: manrope-bold;
+	box-shadow: 0 0 0 2px #e3f6f9;
+	transition: 0.1s ease;
 }
 
 #calc-operators button {
 	min-width: 40%;
+	color: black;
+	background-image: linear-gradient(to bottom right, #d5fdf5, #70808e);
+}
+
+#calc-operators :nth-child(1),
+#calc-operators :nth-child(2) {
+	background-image: linear-gradient(to bottom right, #f4e140, #ff7800);
+}
+
+#calc-operators :last-child {
+	background-image: linear-gradient(to bottom right, #fd7828, #ff0024);
+}
+
+#former-expr {
+	background-color: #b1c6c8;
+	border-radius: .5rem .5rem 0 0;
+}
+
+#current-expr {
+	background-color: #cbdddf;
+	border-radius: 0 0 .5rem .5rem;
 }
